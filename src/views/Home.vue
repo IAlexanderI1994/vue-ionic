@@ -7,6 +7,8 @@
 		</ion-header>
 		<ion-content class="ion-padding">
 			<zip-search @get-zip="getZipInfo"/>
+			<zip-info :info="info"/>
+			<clear-info :info="info" @clear-info="clearInfo"></clear-info>
 		</ion-content>
 
 	</div>
@@ -15,11 +17,15 @@
 <script>
 
   import ZipSearch from '../components/ZipSearch'
+  import ZipInfo from '../components/ZipInfo'
+  import ClearInfo from '../components/ClearInfo'
 
   export default {
     name: 'home',
     components: {
-      ZipSearch
+      ZipSearch,
+      ZipInfo,
+      ClearInfo
     },
     data () {
       return {
@@ -34,7 +40,6 @@
 
         this.info = await response.json()
 
-
       },
       showAlert () {
         return this.$ionic.alertController
@@ -44,6 +49,9 @@
                      buttons: ['OK']
                    })
                    .then(a => a.present())
+      },
+      clearInfo() {
+        this.info = null
       }
     }
   }
