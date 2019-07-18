@@ -35,7 +35,7 @@
     methods: {
       async getZipInfo (zip) {
 
-        const response = await fetch(`http://api.zippopotam.us/RU/${zip}`)
+        const response = await fetch(`https://api.zippopotam.us/RU/${zip}`)
         if (response.status === 404) return this.showAlert()
 
         this.info = await response.json()
